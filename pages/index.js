@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styled from "styled-components";
+import Header from "../components/Header";
 import Homepage from "../components/homepage";
 
 export default function Home() {
@@ -16,15 +16,8 @@ export default function Home() {
         />
       </Head>
 
-      <MessageContainer>
-        A setup for Next.js + Styled Component
-      </MessageContainer>
+      <Header />
       <Homepage />
     </div>
   );
 }
-
-const MessageContainer = styled.h1`
-  color: lightgray;
-  text-align: center;
-`;
