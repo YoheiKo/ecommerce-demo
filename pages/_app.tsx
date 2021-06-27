@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 /* html, */
 body {
-  padding: 0;
+  padding: 20px 60px;
   margin: 0;
   font-family:'Open Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
