@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Forminput from "./Forminput";
+import CustomButton from "./CustomButton";
+import { signInWithGoogle } from "../src/firebase/firebase.utils";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -44,7 +46,12 @@ class SignIn extends React.Component {
             label="password"
             required
           />
-          <input type="submit" value="Submit Form" />
+          <ButtonWrapper>
+            <CustomButton type="submit">Sign in</CustomButton>
+            <CustomButton onClick={signInWithGoogle}>
+              Google SignIn
+            </CustomButton>
+          </ButtonWrapper>
         </form>
         {this.email}
         {this.password}
@@ -69,4 +76,16 @@ export default SignIn;
 //   // name === "email" ? console.log("email") : console.log("pass");
 // };
 
-const SigninComponent = styled.div``;
+const SigninComponent = styled.div`
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+
+  > span {
+    margin: 10px 0;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+`;

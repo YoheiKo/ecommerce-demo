@@ -8,7 +8,7 @@ function signin() {
     <div>
       <Header />
       <Singin />
-      <SignInAndOut>Sign In</SignInAndOut>
+      <SignInAndOut></SignInAndOut>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import Homepage from "../components/homepage";
+import { auth } from "../src/firebase/firebase.utils";
 
 export default function Home() {
   return (
