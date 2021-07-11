@@ -48,7 +48,7 @@ class SignIn extends React.Component {
           />
           <ButtonWrapper>
             <CustomButton type="submit">Sign in</CustomButton>
-            <CustomButton onClick={signInWithGoogle}>
+            <CustomButton isGoogleSignIn onClick={signInWithGoogle}>
               Google SignIn
             </CustomButton>
           </ButtonWrapper>
@@ -77,7 +77,7 @@ export default SignIn;
 // };
 
 const SigninComponent = styled.div`
-  width: 30vw;
+  width: 380px;
   display: flex;
   flex-direction: column;
 
@@ -88,4 +88,5 @@ const SigninComponent = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
 `;

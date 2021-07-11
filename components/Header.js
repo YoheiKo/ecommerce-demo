@@ -1,23 +1,58 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import React from "react";
+import { auth } from "../src/firebase/firebase.utils";
 
-function Header() {
-  return (
-    <HeaderComponent>
-      <LogoLink href="/">
-        <LogoContainer src="/crown.svg" width={40} height={40} />
-      </LogoLink>
-      <OptionsContainer>
-        <OptionLink>
-          <Link href="/shop">SHOP</Link>
-        </OptionLink>
-        <OptionLink>
-          <Link href="/shop">CONTACT</Link>
-        </OptionLink>
-      </OptionsContainer>
-    </HeaderComponent>
-  );
+class Header extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null,
+    };
+  }
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      this.setState({ currentUser: user });
+
+      console.log(user);
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <HeaderComponent>
+        <LogoLink href="/">
+          <LogoContainer src="/crown.svg" width={40} height={40} />
+        </LogoLink>
+        <OptionsContainer>
+          <OptionLink>
+            <Link href="/shop">SHOP</Link>
+          </OptionLink>
+          <OptionLink>
+            <Link href="/shop">CONTACT</Link>
+          </OptionLink>
+          {this.state.currentUser ? (
+            <OptionLink>
+              <div onClick={() => auth.signOut()}>SIGN OUT</div>
+            </OptionLink>
+          ) : (
+            <OptionLink>
+              <Link href="/signin">SIGN IN</Link>
+            </OptionLink>
+          )}
+        </OptionsContainer>
+      </HeaderComponent>
+    );
+  }
 }
 
 export default Header;
@@ -35,6 +70,7 @@ const LogoLink = styled(Link)``;
 const OptionLink = styled.div`
   padding-left: 15px;
   display: block;
+  cursor: pointer;
 `;
 
 const LogoContainer = styled(Image)`

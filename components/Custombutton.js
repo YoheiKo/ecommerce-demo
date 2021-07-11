@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-function CustomButton({ children, ...otherProps }) {
-  return <ButtonComponent {...otherProps}>{children}</ButtonComponent>;
+function CustomButton({ children, isGoogleSignIn, ...otherProps }) {
+  return (
+    <ButtonComponent isGoogleSignIn={isGoogleSignIn} {...otherProps}>
+      {children}
+    </ButtonComponent>
+  );
 }
 
 export default CustomButton;
@@ -15,17 +19,18 @@ const ButtonComponent = styled.button`
   /* line-height: 50px; */
   padding: 0 15px 0 15px;
   font-size: 14px;
-  background-color: black;
   color: white;
   text-transform: uppercase;
   /* font-family: "Open Sans Condensed"; */
   font-weight: bolder;
   border: none;
   cursor: pointer;
+  background-color: ${(props) => (props.isGoogleSignIn ? "#4285f4" : "black")};
 
   :hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+    background-color: ${(props) =>
+      props.isGoogleSignIn ? "#357ae8" : "white"};
+    color: ${(props) => (props.isGoogleSignIn ? "white" : "black")};
+    border: ${(props) => (props.isGoogleSignIn ? "none" : "1px solid black")};
   }
 `;
